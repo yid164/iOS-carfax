@@ -30,7 +30,7 @@ class Api {
 }
 
 struct DataParse: Codable {
-    let listings: [VehicleDetail]
+    let listings: [Vehicle]
 }
 
 struct LoadingError: Error { }

@@ -8,38 +8,38 @@
 import SwiftUI
 
 struct ListTileView: View {
-    var vehicleDetail: VehicleDetail
+    var vehicle: Vehicle
     
     var body: some View {
         VStack {
-            NavigationLink(destination: EmptyView()) {
+            NavigationLink(destination: VehicleDetailScreen(vehicle: vehicle)) {
                 VStack(alignment: .leading) {
-                    VehiclePhotoView(photo: vehicleDetail.images.firstPhoto.largeImage)
+                    VehiclePhotoView(photo: vehicle.images.firstPhoto.largeImage)
                     HStack(spacing: 6) {
-                        Text("\(String(vehicleDetail.year))")
+                        Text("\(String(vehicle.year))")
                             .bold()
                             .foregroundColor(Color.primary)
-                        Text("\(vehicleDetail.make)")
+                        Text("\(vehicle.make)")
                             .bold()
                             .foregroundColor(Color.primary)
-                        Text("\(vehicleDetail.model)")
+                        Text("\(vehicle.model)")
                             .bold()
                             .foregroundColor(Color.primary)
-                        Text("\(vehicleDetail.trim)")
+                        Text("\(vehicle.trim)")
                             .bold()
                             .foregroundColor(Color.primary)
                     }
                     HStack(spacing: 7) {
-                        Text("\(NSNumber(value: vehicleDetail.currentPrice), formatter: currencyFormatter)")
+                        Text("\(NSNumber(value: vehicle.currentPrice), formatter: currencyFormatter)")
                             .bold()
                             .foregroundColor(Color.primary)
                         divider
                             .foregroundColor(Color.primary)
-                        Text("\(vehicleDetail.mileage) Mi")
+                        Text("\(vehicle.mileage) Mi")
                             .foregroundColor(Color.primary)
                         divider
                             .foregroundColor(Color.primary)
-                        Text("\(vehicleDetail.dealer.city), \(vehicleDetail.dealer.state)")
+                        Text("\(vehicle.dealer.city), \(vehicle.dealer.state)")
                             .foregroundColor(Color.primary)
                     }
                 }
@@ -47,27 +47,11 @@ struct ListTileView: View {
             }
 
 
-            Button(action: { telephone(number: vehicleDetail.dealer.phone.toTelephoneNumber) }) {
-                Text("\(vehicleDetail.dealer.phone.toPhoneNumber)")
+            Button(action: { telephone(number: vehicle.dealer.phone.toTelephoneNumber) }) {
+                Text("\(vehicle.dealer.phone.toPhoneNumber)")
             }
             
             Divider()
-        }
-    }
-}
-
-struct VehiclePhotoView: View {
-    var photo: Image?
-    var body: some View {
-        if let photo = photo {
-            photo
-                .resizable()
-                .scaledToFit()
-        } else {
-            Image(systemName: "photo.fill")
-                .resizable()
-                .scaledToFit()
-                .foregroundColor(.gray)
         }
     }
 }

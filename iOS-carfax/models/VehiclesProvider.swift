@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class VehcilesProvider: ObservableObject {
-    @Published var vehicleList: [VehicleDetail] = []
+    @Published var vehicleList: [Vehicle] = []
     @Published var isLoading: Bool = false
     @Published var error: Error?
         

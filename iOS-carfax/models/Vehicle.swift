@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 
-struct VehicleDetail: Codable, Hashable {
+struct Vehicle: Codable, Hashable {
     let id: String
     let images: VehicleImage
     let make: String
@@ -20,8 +20,9 @@ struct VehicleDetail: Codable, Hashable {
     let dealer: Dealership
     let currentPrice: Double
     let listPrice: Double
+    let accidentHistory: AccidentHistory
     
-    static func == (lhs: VehicleDetail, rhs: VehicleDetail) -> Bool {
+    static func == (lhs: Vehicle, rhs: Vehicle) -> Bool {
         lhs.id == rhs.id
     }
     
@@ -62,4 +63,17 @@ struct Dealership: Codable {
     let address: String
     let city: String
     let state: String
+}
+
+struct AccidentHistory: Codable {
+    let accidentSummary: [String]
+    let icon: String
+    let iconUrl: String
+    let text: String
+}
+
+extension AccidentHistory {
+    var iconImage: Image? {
+        if let data = try? Data(contentsOf: URL(string: iconUrl)!) { return Image(uiImage: UIImage(data: data)!)} else { return nil }
+    }
 }

@@ -13,7 +13,7 @@ struct ContentView: View {
         NavigationView {
             ScrollView {
                 ForEach(provider.vehicleList, id: \.self) { item in
-                    ListTileView(vehicleDetail: item)
+                    ListTileView(vehicle: item)
                 }
             }
             .overlay(
