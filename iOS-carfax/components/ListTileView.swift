@@ -12,19 +12,29 @@ struct ListTileView: View {
     
     var body: some View {
         VStack {
-            VehiclePhotoView(photo: vehicleDetail.images.firstPhoto.largeImage)
-            HStack {
-                Text("\(vehicleDetail.year)")
-                Text("\(vehicleDetail.make)")
-                Text("\(vehicleDetail.model)")
-                Text("\(vehicleDetail.trim)")
+            VStack(alignment: .leading) {
+                VehiclePhotoView(photo: vehicleDetail.images.firstPhoto.largeImage)
+                HStack(spacing: 3) {
+                    Text("\(String(vehicleDetail.year))")
+                        .bold()
+                    Text("\(vehicleDetail.make)")
+                        .bold()
+                    Text("\(vehicleDetail.model)")
+                        .bold()
+                    Text("\(vehicleDetail.trim)")
+                        .bold()
+                }
+                HStack(spacing: 7) {
+                    Text("\(NSNumber(value: vehicleDetail.currentPrice), formatter: currencyFormatter)")
+                        .bold()
+                    divider
+                    Text("\(vehicleDetail.mileage) Mi")
+                    divider
+                    Text("\(vehicleDetail.dealer.city), \(vehicleDetail.dealer.state)")
+                }
             }
-            HStack {
-                Text("\(NSNumber(value: vehicleDetail.currentPrice), formatter: currencyFormatter) | ")
-                Text("\(vehicleDetail.mileage.kmFormatted) Mi | ")
-                Text("\(vehicleDetail.dealer.city), \(vehicleDetail.dealer.state)")
-            }
-            
+            .padding()
+
             Button(action: {}) {
                 Text("\(vehicleDetail.dealer.phone.toPhoneNumber())")
             }
@@ -38,19 +48,10 @@ struct ListTileView: View {
         return formatter
     }
     
-}
-
-extension Int {
-    var kmFormatted: String {
-        if self >= 10000, self <= 999999 {
-            return String(format: "%.1fK", locale: Locale.current,self/1000).replacingOccurrences(of: ".0", with: "")
-        }
-
-        if self > 999999 {
-            return String(format: "%.1fM", locale: Locale.current,self/1000000).replacingOccurrences(of: ".0", with: "")
-        }
-
-        return String(format: "%.0f", locale: Locale.current,self)
+    var divider: some View {
+        return Rectangle()
+            .fill(.black)
+            .frame(width: 1)
     }
 }
 
@@ -65,8 +66,12 @@ struct VehiclePhotoView: View {
     var body: some View {
         if let photo = photo {
             photo
+                .resizable()
+                .scaledToFit()
         } else {
             Image(systemName: "photo.fill")
+                .resizable()
+                .scaledToFit()
         }
     }
 }
