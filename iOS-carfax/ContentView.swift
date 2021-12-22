@@ -8,29 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var list: [VehicleDetail] = []
+    @ObservedObject var provider = VehcilesProvider()
     var body: some View {
         NavigationView {
             ScrollView {
-                ForEach(list, id: \.self) { item in
+                ForEach(provider.vehicleList, id: \.self) { item in
                     ListTileView(vehicleDetail: item)
                 }
             }
+            .overlay(
+                ZStack {
+                    if provider.isLoading {
+                        ActivityIndicator(isAnimating: .constant(true), style: UIActivityIndicatorView.Style.medium)
+                    }
+                }
+            )
+            .navigationTitle(Text("Used Car"))
         }
         .onAppear() {
-            Api().loadJson { result in
-                switch result {
-                case let .success(data): self.list = Api().parseData(jsonData: data)
-                default: self.list = []
-                }
-            }
+            provider.loadingData()
         }
 
     }
 }
-
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ContentView()
-//    }
-//}

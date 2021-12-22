@@ -6,12 +6,9 @@
 //
 
 import Foundation
-import Combine
-import Network
 
 class Api {
     private let apiUrl: String = "https://carfax-for-consumers.firebaseio.com/assignment.json"
-    
     
     func loadJson(completion: @escaping (Result<Data, Error>) -> Void) {
         if let url = URL(string: apiUrl) {
@@ -24,27 +21,7 @@ class Api {
                     completion(.success(data))
                 }
             }
-            
             urlSession.resume()
         }
     }
-    
-    func parseData(jsonData: Data) -> [VehicleDetail] {
-        do {
-            let decodedData = try JSONDecoder().decode(DataParse.self,
-                                                       from: jsonData)
-            return decodedData.listings
-        } catch {
-            print("decode error")
-        }
-        return []
-    }
-    
-    struct DataParse: Codable {
-        let listings: [VehicleDetail]
-    }
 }
-
-
-
-

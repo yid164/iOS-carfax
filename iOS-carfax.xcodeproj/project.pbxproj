@@ -17,6 +17,9 @@
 		DACBA81E27727DF600DEA046 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBA81D27727DF600DEA046 /* Api.swift */; };
 		DACBA82227728BC400DEA046 /* VehicleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBA82127728BC400DEA046 /* VehicleDetail.swift */; };
 		DACBA82527729E4A00DEA046 /* ListTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBA82427729E4A00DEA046 /* ListTileView.swift */; };
+		DACBA8272772B66D00DEA046 /* VehiclesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBA8262772B66D00DEA046 /* VehiclesProvider.swift */; };
+		DACBA82A2772C13200DEA046 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBA8292772C13200DEA046 /* ActivityIndicator.swift */; };
+		DACBA82C2772C16F00DEA046 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBA82B2772C16F00DEA046 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,9 @@
 		DACBA81D27727DF600DEA046 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		DACBA82127728BC400DEA046 /* VehicleDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetail.swift; sourceTree = "<group>"; };
 		DACBA82427729E4A00DEA046 /* ListTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTileView.swift; sourceTree = "<group>"; };
+		DACBA8262772B66D00DEA046 /* VehiclesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesProvider.swift; sourceTree = "<group>"; };
+		DACBA8292772C13200DEA046 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		DACBA82B2772C16F00DEA046 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,13 +106,13 @@
 		DACBA7F227727D2B00DEA046 /* iOS-carfax */ = {
 			isa = PBXGroup;
 			children = (
+				DACBA8282772C11300DEA046 /* shared */,
 				DACBA82327729DEE00DEA046 /* components */,
 				DACBA8202772868600DEA046 /* models */,
 				DACBA7F327727D2B00DEA046 /* iOS_carfaxApp.swift */,
 				DACBA7F527727D2B00DEA046 /* ContentView.swift */,
 				DACBA7F727727D2D00DEA046 /* Assets.xcassets */,
 				DACBA7F927727D2D00DEA046 /* Preview Content */,
-				DACBA81D27727DF600DEA046 /* Api.swift */,
 			);
 			path = "iOS-carfax";
 			sourceTree = "<group>";
@@ -140,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				DACBA82127728BC400DEA046 /* VehicleDetail.swift */,
+				DACBA8262772B66D00DEA046 /* VehiclesProvider.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -150,6 +157,16 @@
 				DACBA82427729E4A00DEA046 /* ListTileView.swift */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		DACBA8282772C11300DEA046 /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				DACBA81D27727DF600DEA046 /* Api.swift */,
+				DACBA8292772C13200DEA046 /* ActivityIndicator.swift */,
+				DACBA82B2772C16F00DEA046 /* Extensions.swift */,
+			);
+			path = shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,8 +302,11 @@
 				DACBA81E27727DF600DEA046 /* Api.swift in Sources */,
 				DACBA82227728BC400DEA046 /* VehicleDetail.swift in Sources */,
 				DACBA7F627727D2B00DEA046 /* ContentView.swift in Sources */,
+				DACBA82C2772C16F00DEA046 /* Extensions.swift in Sources */,
 				DACBA82527729E4A00DEA046 /* ListTileView.swift in Sources */,
+				DACBA82A2772C13200DEA046 /* ActivityIndicator.swift in Sources */,
 				DACBA7F427727D2B00DEA046 /* iOS_carfaxApp.swift in Sources */,
+				DACBA8272772B66D00DEA046 /* VehiclesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,7 +394,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -429,7 +449,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -455,16 +475,17 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "yinshengdong.iOS-carfax";
+				PRODUCT_BUNDLE_IDENTIFIER = yinshengdong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -484,16 +505,17 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "yinshengdong.iOS-carfax";
+				PRODUCT_BUNDLE_IDENTIFIER = yinshengdong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

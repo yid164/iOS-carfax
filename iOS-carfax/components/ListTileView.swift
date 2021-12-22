@@ -35,29 +35,10 @@ struct ListTileView: View {
             }
             .padding()
 
-            Button(action: {}) {
-                Text("\(vehicleDetail.dealer.phone.toPhoneNumber())")
+            Button(action: { telephone(number: vehicleDetail.dealer.phone.toTelephoneNumber) }) {
+                Text("\(vehicleDetail.dealer.phone.toPhoneNumber)")
             }
         }
-    }
-    
-    var currencyFormatter: NumberFormatter {
-        let formatter = NumberFormatter()
-        formatter.locale = .current
-        formatter.numberStyle = .currency
-        return formatter
-    }
-    
-    var divider: some View {
-        return Rectangle()
-            .fill(.black)
-            .frame(width: 1)
-    }
-}
-
-extension String {
-    public func toPhoneNumber() -> String {
-        return self.replacingOccurrences(of: "(\\d{3})(\\d{3})(\\d+)", with: "($1) $2-$3", options: .regularExpression, range: nil)
     }
 }
 
@@ -72,6 +53,7 @@ struct VehiclePhotoView: View {
             Image(systemName: "photo.fill")
                 .resizable()
                 .scaledToFit()
+                .foregroundColor(.gray)
         }
     }
 }
