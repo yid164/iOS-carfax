@@ -21,7 +21,6 @@ class Api {
                 }
                 
                 if let data = data {
-                    self.parseData(jsonData: data)
                     completion(.success(data))
                 }
             }
@@ -30,14 +29,15 @@ class Api {
         }
     }
     
-    func parseData(jsonData: Data) {
+    func parseData(jsonData: Data) -> [VehicleDetail] {
         do {
             let decodedData = try JSONDecoder().decode(DataParse.self,
                                                        from: jsonData)
-            print(decodedData.listings.count)
+            return decodedData.listings
         } catch {
             print("decode error")
         }
+        return []
     }
     
     struct DataParse: Codable {
