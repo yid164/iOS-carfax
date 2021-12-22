@@ -29,11 +29,15 @@ struct VehicleDetailScreen: View {
                         .bold()
                 }
                 
+                Text("Mileage: \(String(vehicle.mileage))")
+                    .font(.footnote)
+                    .italic()
+                
                 VStack(alignment: .leading){
                     HStack {
                         Text("CARFAX REPORT")
                             .bold()
-                            .font(.callout)
+                            .font(.headline)
                         if vehicle.accidentHistory.iconImage != nil {
                             vehicle.accidentHistory.iconImage!
                                 .resizable()
@@ -45,11 +49,40 @@ struct VehicleDetailScreen: View {
                     Text("\(vehicle.accidentHistory.text)")
                 }
                 
+                Divider()
                 
-
+                VStack(alignment: .leading, spacing: 5) {
+                    Text("Basic Specifications")
+                        .bold()
+                        .font(.headline)
+                    Spacer()
+                    HStack {
+                        VStack(alignment: .leading) {
+                            Text("Transmission: \(vehicle.transmission)")
+                                .font(.callout)
+                            Text("Body type: \(vehicle.bodytype)")
+                                .font(.callout)
+                            Text("Drive type: \(vehicle.drivetype)")
+                                .font(.callout)
+                            Text("Exterior color: \(vehicle.exteriorColor)")
+                                .font(.callout)
+                        }
+                        Spacer()
+                        VStack(alignment: .leading) {
+                            Text("Fuel: \(vehicle.fuel)")
+                                .font(.callout)
+                            Text("Engine: \(vehicle.engine)")
+                                .font(.callout)
+                            Text("Certified: \(vehicle.certified ? "Yes" : "No")")
+                                .font(.callout)
+                            Text("Subtrim: \(vehicle.subTrim)")
+                                .font(.callout)
+                        }
+                    }
+                }
             }
         }
-        .padding()
+        .padding([.horizontal])
         .navigationTitle(Text("\(vehicle.make) \(vehicle.model)"))
     }
     

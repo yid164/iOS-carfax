@@ -21,6 +21,15 @@ struct Vehicle: Codable, Hashable {
     let currentPrice: Double
     let listPrice: Double
     let accidentHistory: AccidentHistory
+    let sortScore: Double
+    let fuel: String
+    let exteriorColor: String
+    let drivetype: String
+    let bodytype: String
+    let certified: Bool
+    let engine: String
+    let subTrim: String
+    let transmission: String
     
     static func == (lhs: Vehicle, rhs: Vehicle) -> Bool {
         lhs.id == rhs.id
