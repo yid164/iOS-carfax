@@ -12,32 +12,46 @@ struct ListTileView: View {
     
     var body: some View {
         VStack {
-            VStack(alignment: .leading) {
-                VehiclePhotoView(photo: vehicleDetail.images.firstPhoto.largeImage)
-                HStack(spacing: 3) {
-                    Text("\(String(vehicleDetail.year))")
-                        .bold()
-                    Text("\(vehicleDetail.make)")
-                        .bold()
-                    Text("\(vehicleDetail.model)")
-                        .bold()
-                    Text("\(vehicleDetail.trim)")
-                        .bold()
+            NavigationLink(destination: EmptyView()) {
+                VStack(alignment: .leading) {
+                    VehiclePhotoView(photo: vehicleDetail.images.firstPhoto.largeImage)
+                    HStack(spacing: 6) {
+                        Text("\(String(vehicleDetail.year))")
+                            .bold()
+                            .foregroundColor(Color.primary)
+                        Text("\(vehicleDetail.make)")
+                            .bold()
+                            .foregroundColor(Color.primary)
+                        Text("\(vehicleDetail.model)")
+                            .bold()
+                            .foregroundColor(Color.primary)
+                        Text("\(vehicleDetail.trim)")
+                            .bold()
+                            .foregroundColor(Color.primary)
+                    }
+                    HStack(spacing: 7) {
+                        Text("\(NSNumber(value: vehicleDetail.currentPrice), formatter: currencyFormatter)")
+                            .bold()
+                            .foregroundColor(Color.primary)
+                        divider
+                            .foregroundColor(Color.primary)
+                        Text("\(vehicleDetail.mileage) Mi")
+                            .foregroundColor(Color.primary)
+                        divider
+                            .foregroundColor(Color.primary)
+                        Text("\(vehicleDetail.dealer.city), \(vehicleDetail.dealer.state)")
+                            .foregroundColor(Color.primary)
+                    }
                 }
-                HStack(spacing: 7) {
-                    Text("\(NSNumber(value: vehicleDetail.currentPrice), formatter: currencyFormatter)")
-                        .bold()
-                    divider
-                    Text("\(vehicleDetail.mileage) Mi")
-                    divider
-                    Text("\(vehicleDetail.dealer.city), \(vehicleDetail.dealer.state)")
-                }
+                .padding()
             }
-            .padding()
+
 
             Button(action: { telephone(number: vehicleDetail.dealer.phone.toTelephoneNumber) }) {
                 Text("\(vehicleDetail.dealer.phone.toPhoneNumber)")
             }
+            
+            Divider()
         }
     }
 }

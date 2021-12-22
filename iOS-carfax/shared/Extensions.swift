@@ -22,6 +22,7 @@ var currencyFormatter: NumberFormatter {
     let formatter = NumberFormatter()
     formatter.locale = .current
     formatter.numberStyle = .currency
+    formatter.maximumFractionDigits = 0
     return formatter
 }
 

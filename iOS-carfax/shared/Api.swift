@@ -6,22 +6,31 @@
 //
 
 import Foundation
+import Combine
 
 class Api {
+    
     private let apiUrl: String = "https://carfax-for-consumers.firebaseio.com/assignment.json"
     
-    func loadJson(completion: @escaping (Result<Data, Error>) -> Void) {
-        if let url = URL(string: apiUrl) {
-            let urlSession = URLSession(configuration: .default).dataTask(with: url) { (data, response, error) in
-                if let error = error {
-                    completion(.failure(error))
-                }
-                
-                if let data = data {
-                    completion(.success(data))
+    func loadDatas() -> AnyPublisher<DataParse, Error> {
+        let url = URL(string: apiUrl)!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        return URLSession.shared.dataTaskPublisher(for: request)
+            .tryMap { data, response in
+                if data.isEmpty {
+                    throw LoadingError()
+                } else {
+                    return data
                 }
             }
-            urlSession.resume()
-        }
+            .decode(type: DataParse.self, decoder: JSONDecoder())
+            .eraseToAnyPublisher()
     }
 }
+
+struct DataParse: Codable {
+    let listings: [VehicleDetail]
+}
+
+struct LoadingError: Error { }

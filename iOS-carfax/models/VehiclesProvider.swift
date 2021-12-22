@@ -6,39 +6,30 @@
 //
 
 import Foundation
+import Combine
 
 class VehcilesProvider: ObservableObject {
     @Published var vehicleList: [VehicleDetail] = []
     @Published var isLoading: Bool = false
     @Published var error: Error?
-    
+        
     func loadingData() {
         isLoading = true
-        api.loadJson { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case let .success(data):
-                self.vehicleList = self.parseData(jsonData: data)
-            case let .failure(error):
-                self.error = error
+        api.loadDatas()
+            .receive(on: RunLoop.main)
+            .sink { [weak self] result in
+                guard let self = self else { return }
+                guard case let .failure(e) = result else { return }
+                self.error = e
+            } receiveValue: { [weak self] data in
+                guard let self = self else { return }
+                self.isLoading = false
+                self.vehicleList = data.listings
+                self.error = nil
             }
-            self.isLoading = false
-        }
+            .store(in: &cs)
     }
     
     private let api: Api = Api()
-    
-    private func parseData(jsonData: Data) -> [VehicleDetail] {
-        do {
-            let decodedData = try JSONDecoder().decode(DataParse.self, from: jsonData)
-            return decodedData.listings
-        } catch {
-            print("Parse error")
-        }
-        return []
-    }
-    
-    struct DataParse: Codable {
-        let listings: [VehicleDetail]
-    }
+    private var cs: Set<AnyCancellable> = []
 }
