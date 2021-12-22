@@ -16,6 +16,7 @@
 		DACBA81127727D2D00DEA046 /* iOS_carfaxUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBA81027727D2D00DEA046 /* iOS_carfaxUITestsLaunchTests.swift */; };
 		DACBA81E27727DF600DEA046 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBA81D27727DF600DEA046 /* Api.swift */; };
 		DACBA82227728BC400DEA046 /* VehicleDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBA82127728BC400DEA046 /* VehicleDetail.swift */; };
+		DACBA82527729E4A00DEA046 /* ListTileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DACBA82427729E4A00DEA046 /* ListTileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		DACBA81027727D2D00DEA046 /* iOS_carfaxUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOS_carfaxUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		DACBA81D27727DF600DEA046 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		DACBA82127728BC400DEA046 /* VehicleDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleDetail.swift; sourceTree = "<group>"; };
+		DACBA82427729E4A00DEA046 /* ListTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		DACBA7F227727D2B00DEA046 /* iOS-carfax */ = {
 			isa = PBXGroup;
 			children = (
+				DACBA82327729DEE00DEA046 /* components */,
 				DACBA8202772868600DEA046 /* models */,
 				DACBA7F327727D2B00DEA046 /* iOS_carfaxApp.swift */,
 				DACBA7F527727D2B00DEA046 /* ContentView.swift */,
@@ -139,6 +142,14 @@
 				DACBA82127728BC400DEA046 /* VehicleDetail.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		DACBA82327729DEE00DEA046 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				DACBA82427729E4A00DEA046 /* ListTileView.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,6 +285,7 @@
 				DACBA81E27727DF600DEA046 /* Api.swift in Sources */,
 				DACBA82227728BC400DEA046 /* VehicleDetail.swift in Sources */,
 				DACBA7F627727D2B00DEA046 /* ContentView.swift in Sources */,
+				DACBA82527729E4A00DEA046 /* ListTileView.swift in Sources */,
 				DACBA7F427727D2B00DEA046 /* iOS_carfaxApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

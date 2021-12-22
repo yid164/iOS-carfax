@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import UIKit
+import SwiftUI
 
-struct VehicleDetail: Codable {
+struct VehicleDetail: Codable, Hashable {
     let id: String
     let images: VehicleImage
     let make: String
@@ -18,6 +20,15 @@ struct VehicleDetail: Codable {
     let dealer: Dealership
     let currentPrice: Double
     let listPrice: Double
+    
+    static func == (lhs: VehicleDetail, rhs: VehicleDetail) -> Bool {
+        lhs.id == rhs.id
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+
 }
 
 struct VehicleImage: Codable {
@@ -29,6 +40,20 @@ struct VehicleImagePhotos: Codable {
     let large: String
     let medium: String
     let small: String
+}
+
+extension VehicleImagePhotos {
+    var largeImage: Image? {
+        if let data = try? Data(contentsOf: URL(string: large)!) { return Image(uiImage: UIImage(data: data)!)} else { return nil }
+    }
+    
+    var mediumImage: Image? {
+        if let data = try? Data(contentsOf: URL(string: medium)!) { return Image(uiImage: UIImage(data: data)!)} else { return nil }
+    }
+    
+    var smallImage: Image? {
+        if let data = try? Data(contentsOf: URL(string: small)!) { return Image(uiImage: UIImage(data: data)!)} else { return nil }
+    }
 }
 
 struct Dealership: Codable {
